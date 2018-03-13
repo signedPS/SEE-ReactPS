@@ -3,6 +3,16 @@ import { Component } from 'react';
 import {TextField} from 'material-ui';
 import {SelectField, MenuItem} from 'material-ui';
 import config from '../../appConfig';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import description, {
+	ageEntered,
+	feetEntered,
+	inchesEntered,
+	weightEntered,
+	weightValidation
+} from './descriptionRedux';
+
 
 class PageThree extends Component{
 	constructor(props){
@@ -30,16 +40,40 @@ class PageThree extends Component{
 					<li>Weight (optional, but if entered must be valid numeric input)</li>
 				</ul>
 				<div style={{display:'flex', flexDirection:'column', justifyContent: 'space-around', alignItems:'flex-start', width:'100%'}}>
-					<SelectField floatingLabelText='Age'>{this.renderMenuItems(config.age)}</SelectField>
+					<SelectField value={this.props.age} onChange={(event, index, value)=>this.props.ageEntered(value)} floatingLabelText='Age'>{this.renderMenuItems(config.age)}</SelectField>
 					<div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', alignItems:'flex-start', width:'27%'}}>
-						<SelectField style={{width:'35%'}} floatingLabelText='Feet'>{this.renderMenuItems(config.feet)}</SelectField>
-						<SelectField style={{width:'35%'}} floatingLabelText='Inches'>{this.renderMenuItems(config.inches)}</SelectField>
+						<SelectField value={this.props.feet} onChange={(event, index, value)=>this.props.feetEntered(value)} style={{width:'35%'}} floatingLabelText='Feet'>{this.renderMenuItems(config.feet)}</SelectField>
+						<SelectField value={this.props.inches} onChange={(event, index, value)=>this.props.inchesEntered(value)} style={{width:'35%'}} floatingLabelText='Inches'>{this.renderMenuItems(config.inches)}</SelectField>
 					</div>
-					<SelectField floatingLabelText='Weight'/>
+					<TextField value={this.props.weight}
+						onBlur={(e) => this.props.weightValidation(e)}
+						errorText={ this.props.weightErrorText || ''}
+						onChange={(event)=>this.props.weightEntered(event)}
+						floatingLabelText='Weight (lbs)'
+					/>
 				</div>
 			</div>
 		);
 	}
 }
 
-export default PageThree;
+const mapStateToProps = (state) => ({
+		age: state.description.age,
+		feet: state.description.feet,
+		inches: state.description.inches,
+		weight: state.description.weight,
+		weightErrorText: state.description.weightErrorText,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+	ageEntered: (e) => dispatch(ageEntered(e)),
+	feetEntered: (e) => dispatch(feetEntered(e)),
+	inchesEntered: (e) => dispatch(inchesEntered(e)),
+	weightEntered: (e) => dispatch(weightEntered(e.target.value)),
+	weightValidation: (e) => dispatch(weightValidation(e.target.value))
+}, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PageThree)

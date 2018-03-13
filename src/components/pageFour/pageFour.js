@@ -1,7 +1,13 @@
 import React from 'react';
 import { Component } from 'react';
 import {SelectField, MenuItem} from 'material-ui';
+import {TextField} from 'material-ui';
 import config from '../../appConfig';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import color, {
+	colorEntered,
+} from './colorRedux';
 
 class PageFour extends Component{
 	constructor(props){
@@ -20,7 +26,7 @@ class PageFour extends Component{
 	}
 
 	render(){
-
+		console.log(this.props.other);
 		return(
 			<div>
 				<h1>Page Four</h1>
@@ -28,12 +34,32 @@ class PageFour extends Component{
 						● Other (If this option is chosen, user must fill in a text box, this box
 						is required only of “other” us chosen)
 				</p>
-				<SelectField floatingLabelText='Favorite Color'>
-					{this.renderMenuItems(config.colors)}
-				</SelectField>
+				<div style={{display:'flex', flexDirection: 'column'}}>
+					<SelectField floatingLabelText={'Favorite Color'}
+						value={this.props.colorValue}
+						onChange={(event, index, value)=>this.props.colorEntered(value)}
+					>
+						{this.renderMenuItems(config.colors)}
+					</SelectField>
+					{this.props.other &&
+						<TextField floatingLabelText={'Enter other color'}/>
+					}
+				</div>
 			</div>
 		);
 	}
 }
 
-export default PageFour;
+const mapStateToProps = (state) => ({
+		colorValue: state.color.colorValue,
+		other: state.color.other
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+	colorEntered: (e) => dispatch(colorEntered(e))
+}, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PageFour)
