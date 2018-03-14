@@ -7,6 +7,11 @@ import { push } from 'react-router-redux';
 import emailAddress from '../../redux/emailPage/email-page-reducer';
 import { emailEntered } from '../../redux/emailPage/email-page-actions';
 import {RaisedButton} from 'material-ui';
+import {pageContainer,
+	paginationContainer,
+	pageButtonStyling,
+	fieldContainers,
+	titleSubtextStyle} from '../componentStyles';
 
 class EmailPage extends Component{
 	constructor(props){
@@ -15,10 +20,10 @@ class EmailPage extends Component{
 
 	render(){
 		return(
-			<div className="page" style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
+			<div style={pageContainer}>
 				<h1>Email Address</h1>
-				<div style={{display:'flex', flexDirection:'column'}}>
-				<p style={{textAlign:'center'}}>Please enter a valid email address</p>
+				<div style={fieldContainers}>
+				<p style={titleSubtextStyle}>Please enter a valid email address</p>
 					<TextField id={'firstName'}
 						errorText={ this.props.errorText || ''}
 						hintText={'Enter Valid Email'}
@@ -27,13 +32,20 @@ class EmailPage extends Component{
 						onChange={(e) => this.props.emailEntered(e)}
 					/>
 				</div>
-				<div style={{display:'flex', flexDirection:'row'}}>
-					<RaisedButton  label="Previous Page" onClick={() => this.props.prevPage()} style={{margin:12}}></RaisedButton>
-				{ (!this.props.errorText) &&
+				<div style={paginationContainer}>
+					<RaisedButton
+						label={'Previous Page'}
+						onClick={() => this.props.prevPage()}
+						style={pageButtonStyling}
+					/>
+					{(!this.props.errorText) &&
+						<RaisedButton primary={true}
+							label={'Next Page'}
+							onClick={() => this.props.changePage()}
+							style={pageButtonStyling}
+						/>
 
-						<RaisedButton primary={true} label="Next Page" onClick={() => this.props.changePage()} style={{margin:12}}></RaisedButton>
-
-				}
+					}
 				</div>
 			</div>
 		);

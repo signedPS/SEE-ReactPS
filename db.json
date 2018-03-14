@@ -2,8 +2,8 @@
   "posts": [
     {
       "names": {
-        "firstName": "k",
-        "lastName": "ji"
+        "firstName": "Pedro",
+        "lastName": "Last"
       },
       "emailAddress": {
         "email": "nice@email.com"
@@ -12,14 +12,73 @@
         "age": "17 or younger",
         "feet": 3,
         "weight": "",
-        "inches": 4
+        "inches": 1
       },
       "color": {
-        "other": true,
-        "colorValue": "Other",
-        "colorText": "bjn"
+        "other": false,
+        "colorValue": "Red"
       },
       "id": 1
+    },
+    {
+      "names": {
+        "firstName": "Pedro",
+        "lastName": "Last"
+      },
+      "emailAddress": {
+        "email": "nice@email.com"
+      },
+      "description": {
+        "age": "17 or younger",
+        "feet": 3,
+        "weight": "",
+        "inches": 1
+      },
+      "color": {
+        "other": false,
+        "colorValue": "Red"
+      },
+      "id": 2
+    },
+    {
+      "names": {
+        "firstName": "Pedro",
+        "lastName": "Last"
+      },
+      "emailAddress": {
+        "email": "nice@email.com"
+      },
+      "description": {
+        "age": "17 or younger",
+        "feet": 3,
+        "weight": "",
+        "inches": 1
+      },
+      "color": {
+        "other": false,
+        "colorValue": "Red"
+      },
+      "id": 3
+    },
+    {
+      "names": {
+        "firstName": "Pedro",
+        "lastName": "Last"
+      },
+      "emailAddress": {
+        "email": "nice@email.com"
+      },
+      "description": {
+        "age": "17 or younger",
+        "feet": 3,
+        "weight": "",
+        "inches": 1
+      },
+      "color": {
+        "other": false,
+        "colorValue": "Red"
+      },
+      "id": 4
     }
   ]
 }

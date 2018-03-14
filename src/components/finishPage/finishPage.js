@@ -6,6 +6,12 @@ import { push } from 'react-router-redux';
 import {RaisedButton} from 'material-ui';
 import {Store} from '../../store';
 import config from '../../appConfig';
+import {pageContainer,
+	fieldContainers,
+	titleSubtextStyle,
+	pageButtonStyling,
+	finalPageErrorTextStyle,
+	postDataButtonStyle} from '../componentStyles';
 
 class FinishPage extends Component{
 	constructor(props){
@@ -17,8 +23,9 @@ class FinishPage extends Component{
 	}
 
 	putData(dataObj){
-		fetch('http://localhost:3000/posts/1', {
-			method: 'PUT', // or 'PUT'
+		console.log(dataObj);
+		fetch('http://localhost:3000/posts', {
+			method: 'POST', // or 'PUT and specify post ID e.g. http://localhost:3000/posts/1'
 			body: JSON.stringify(dataObj),
 			headers: new Headers({
 				'Content-Type': 'application/json'
@@ -61,24 +68,24 @@ class FinishPage extends Component{
 
 	render(){
 		return(
-			<div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
-				<h1>Finish! You Made it.</h1>
-				<div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems:'center', width:'100%'}}>
-				<p>
-					Thank you for participating.
-				</p>
-			</div>
-			<div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
-				<RaisedButton  label="Previous Page" onClick={() => this.props.prevPage()} style={{margin:12}}></RaisedButton>
-				<RaisedButton disabled={(this.props.errorText || this.props.colorRequired) ? true : false}
-					disabled={this.invalidCheck(this.fetchFromStore())}
-					secondary={true}
-					label={"Post Data"}
-					onClick={() => this.putData(this.fetchFromStore())}
-					style={{marginTop: '30px'}}
-				/>
-				{this.invalidCheck(this.fetchFromStore()) ? <div style={{color: 'red', marginTop: '30px', fontSize:'2em'}}>Invalid form, missing data!</div> : ''}
-			</div>
+			<div style={pageContainer}>
+				<h1>Almost done, just submit your data!</h1>
+				<p style={titleSubtextStyle}>Thank you for participating.</p>
+				<div style={fieldContainers}>
+					<RaisedButton  label="Previous Page" onClick={() => this.props.prevPage()} style={pageButtonStyling}></RaisedButton>
+					<RaisedButton disabled={(this.props.errorText || this.props.colorRequired) ? true : false}
+						disabled={this.invalidCheck(this.fetchFromStore())}
+						secondary={true}
+						label={"Post Data"}
+						onClick={() => this.putData(this.fetchFromStore())}
+						style={postDataButtonStyle}
+					/>
+					{
+						this.invalidCheck(this.fetchFromStore()) ?
+						<div style={finalPageErrorTextStyle}>Invalid form, missing data!</div> :
+	 					''
+					}
+				</div>
 			</div>
 		);
 	}

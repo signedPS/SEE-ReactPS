@@ -7,6 +7,13 @@ import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
 import {RaisedButton} from 'material-ui';
 import { connect } from 'react-redux';
+import {pageContainer,
+	paginationContainer,
+	fieldContainers,
+	titleSubtextStyle,
+	flexRowFieldsStyle,
+	pageButtonStyling,
+	smallInputStyle} from '../componentStyles';
 import {
 	ageEntered,
 	feetEntered,
@@ -15,7 +22,6 @@ import {
 	weightValidation
 } from '../../redux/descriptionPage/description-page-actions';
 import description from '../../redux/descriptionPage/description-page-reducer';
-
 
 class DescriptionPage extends Component{
 	constructor(props){
@@ -35,14 +41,34 @@ class DescriptionPage extends Component{
 
 	render(){
 		return(
-			<div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
+			<div style={pageContainer}>
 				<h1>Description</h1>
-				<div style={{display:'flex', flexDirection:'column'}}>
-					<p style={{textAlign:'center'}}>Tell us about yourself.</p>
-					<SelectField errorText={this.props.ageErrorText} value={this.props.age} onChange={(event, index, value)=>this.props.ageEntered(value)} floatingLabelText='Age'>{this.renderMenuItems(config.age)}</SelectField>
-					<div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', alignItems:'flex-start', width:'100%'}}>
-						<SelectField errorText={this.props.feetErrorText} value={this.props.feet} onChange={(event, index, value)=>this.props.feetEntered(value)} style={{width:'35%'}} floatingLabelText='Feet'>{this.renderMenuItems(config.feet)}</SelectField>
-						<SelectField errorText={this.props.inchesErrorText} value={this.props.inches} onChange={(event, index, value)=>this.props.inchesEntered(value)} style={{width:'35%'}} floatingLabelText='Inches'>{this.renderMenuItems(config.inches)}</SelectField>
+				<div style={fieldContainers}>
+					<p style={titleSubtextStyle}>Tell us about yourself.</p>
+					<SelectField errorText={this.props.ageErrorText}
+						value={this.props.age}
+						onChange={(event, index, value)=>this.props.ageEntered(value)}
+						floatingLabelText='Age'
+					>
+						{this.renderMenuItems(config.age)}
+					</SelectField>
+					<div style={flexRowFieldsStyle}>
+						<SelectField errorText={this.props.feetErrorText}
+							value={this.props.feet}
+							onChange={(event, index, value)=>this.props.feetEntered(value)}
+							style={smallInputStyle}
+							floatingLabelText='Feet'
+						>
+							{this.renderMenuItems(config.feet)}
+						</SelectField>
+						<SelectField errorText={this.props.inchesErrorText}
+							value={this.props.inches}
+							onChange={(event, index, value)=>this.props.inchesEntered(value)}
+							style={smallInputStyle}
+							floatingLabelText='Inches'
+						>
+							{this.renderMenuItems(config.inches)}
+						</SelectField>
 					</div>
 					<TextField value={this.props.weight}
 						errorText={ this.props.weightErrorText || ''}
@@ -50,18 +76,18 @@ class DescriptionPage extends Component{
 						floatingLabelText='Weight (lbs)'
 					/>
 				</div>
-				<div style={{display:'flex', flexDirection:'row'}}>
-					<RaisedButton  label="Previous Page" onClick={() => this.props.prevPage()} style={{margin:12}}></RaisedButton>
+				<div style={paginationContainer}>
+					<RaisedButton  label="Previous Page" onClick={() => this.props.prevPage()} style={pageButtonStyling}></RaisedButton>
 				{ (!this.props.errorText
  					&& !this.props.ageErrorText
 					&& !this.props.inchesErrorText
 					&& !this.props.feetErrorText)
 					&&
-						<RaisedButton primary={true}
-							label={'Next Page'}
-							onClick={() => this.props.changePage()}
-							style={{margin:12}}>
-						</RaisedButton>
+					<RaisedButton primary={true}
+						label={'Next Page'}
+						onClick={() => this.props.changePage()}
+						style={pageButtonStyling}>
+					</RaisedButton>
 				}
 				</div>
 			</div>

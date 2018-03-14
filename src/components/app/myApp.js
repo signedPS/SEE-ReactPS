@@ -7,10 +7,8 @@ import DescriptionPage from '../descriptionPage/descriptionPage';
 import ColorPage from '../colorPage/colorPage';
 import FinishPage from '../finishPage/finishPage';
 import {RaisedButton} from 'material-ui';
-import { push, replace } from 'react-router-redux';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 import { AnimatedRoute } from 'react-router-transition';
+import {pageContainer, fieldContainers, linkStyle} from '../componentStyles';
 
 class MyApp extends Component {
 	constructor(props) {
@@ -20,28 +18,26 @@ class MyApp extends Component {
 	render(){
 
 		return(
-				<div  style={{display: 'flex', flexDirection: 'column'}}>
+				<div  style={pageContainer}>
 				<header>
-					<div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems:'center', width:'100%'}}>
-						<Link style={{textDecoration: 'none', color: 'black', fontFamily: '14px', marginLeft:'10px', marginRight:'10px'}} to='/'>
+						<Link style={linkStyle} to='/'>
 							<RaisedButton>Name</RaisedButton>
 						</Link>
-		        <Link style={{textDecoration: 'none', color: 'black', fontFamily: '14px', marginLeft:'10px', marginRight:'10px'}} to='/page-two'>
+		        <Link style={linkStyle} to='/page-two'>
 		            <RaisedButton>Email</RaisedButton>
 		        </Link>
-						<Link style={{textDecoration: 'none', color: 'black', fontFamily: '14px', marginLeft:'10px', marginRight:'10px'}} to='/page-three'>
+						<Link style={linkStyle} to='/page-three'>
 		          <RaisedButton>Description</RaisedButton>
 						</Link>
-						<Link style={{textDecoration: 'none', color: 'black', fontFamily: '14px', marginLeft:'10px', marginRight:'10px'}} to='/page-four'>
+						<Link style={linkStyle} to='/page-four'>
 		        	<RaisedButton>Color</RaisedButton>
 						</Link>
-						<Link style={{textDecoration: 'none', color: 'black', fontFamily: '14px', marginLeft:'10px', marginRight:'10px'}} to='/page-five'>
+						<Link style={linkStyle} to='/page-five'>
 		        	<RaisedButton>Finish Page</RaisedButton>
 						</Link>
-					</div>
     		</header>
 				<main>
-						<div style={{display:'flex', flexDirection:'column', justifyContent: 'center'}}>
+						<div style={fieldContainers}>
 							<AnimatedRoute
 								exact path="/page-five"
 								component={FinishPage}

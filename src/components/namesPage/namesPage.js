@@ -6,6 +6,11 @@ import { connect } from 'react-redux';
 import {TextField} from 'material-ui';
 import {RaisedButton} from 'material-ui';
 import { firstNameEnter, lastNameEnter } from '../../redux/namesPage/names-page-actions';
+import {pageContainer,
+	paginationContainer,
+	pageButtonStyling,
+	fieldContainers,
+	titleSubtextStyle} from '../componentStyles';
 
 import names from '../../redux/namesPage/names-page-reducer';
 
@@ -17,10 +22,10 @@ class NamesPage extends Component{
 	render(){
 
 		return(
-			<div className="page" style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
-				<h1>Full Name</h1>
-				<div style={{display:'flex', flexDirection:'column'}}>
-					<p style={{textAlign:'center'}}>Please enter your name</p>
+			<div style={pageContainer}>
+				<h1>{(this.props.firstName) ? 'Hi,' + ' ' + this.props.firstName : 'Name' }</h1>
+				<div style={fieldContainers}>
+					<p style={titleSubtextStyle}>{!this.props.firstName ? 'Please enter your name' : 'Welcome!'}</p>
 					<TextField id='firstName'
 						errorText={this.props.errorTextFN}
  						hintText='Enter First Name'
@@ -36,9 +41,11 @@ class NamesPage extends Component{
 						onChange={(e) => this.props.lastNameEnter(e)}
 					/>
 				</div>
+				<div style={paginationContainer}>
 				{ (!this.props.errorTextLN && !this.props.errorTextFN) &&
-					<RaisedButton primary={true} label="Next Page" onClick={() => this.props.changePage()} style={{margin:12}}></RaisedButton>
+					<RaisedButton primary={true} label="Next Page" onClick={() => this.props.changePage()} style={pageButtonStyling}></RaisedButton>
 				}
+				</div>
 			</div>
 		);
 	}

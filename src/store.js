@@ -12,12 +12,15 @@ import storage from 'redux-persist/lib/storage' // defaults to localStorage for 
 
 export const history = createHashHistory()
 
+//configuring persistant storage
 const persistConfig = {
   key: 'root',
   storage,
 }
 
+//passing in persist config and combined reducers/rootReducer
 const persistedReducer = persistReducer(persistConfig, reducers)
+//setting initialState to empty
 const initialState = {};
 const enhancers = [];
 const middleware = [
