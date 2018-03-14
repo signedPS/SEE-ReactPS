@@ -5,12 +5,11 @@ import NamesPage from '../namesPage/namesPage';
 import EmailPage from '../emailPage/emailPage';
 import DescriptionPage from '../descriptionPage/descriptionPage';
 import ColorPage from '../colorPage/colorPage';
-import PageFive from '../pageFive/pageFive';
+import FinishPage from '../finishPage/finishPage';
 import {RaisedButton} from 'material-ui';
 import { push, replace } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import appPageRedux from './appPageRedux';
 import { AnimatedRoute } from 'react-router-transition';
 
 class MyApp extends Component {
@@ -36,16 +35,27 @@ class MyApp extends Component {
 						<Link style={{textDecoration: 'none', color: 'black', fontFamily: '14px', marginLeft:'10px', marginRight:'10px'}} to='/page-four'>
 		        	<RaisedButton>Color</RaisedButton>
 						</Link>
-						<RaisedButton>Page Five</RaisedButton>
-
+						<Link style={{textDecoration: 'none', color: 'black', fontFamily: '14px', marginLeft:'10px', marginRight:'10px'}} to='/page-five'>
+		        	<RaisedButton>Finish Page</RaisedButton>
+						</Link>
 					</div>
     		</header>
 				<main>
-						<div style={{display:'flex', flexDirection:'column'}}>
+						<div style={{display:'flex', flexDirection:'column', justifyContent: 'center'}}>
+							<AnimatedRoute
+								exact path="/page-five"
+								component={FinishPage}
+								atEnter={{ offset: 500 }}
+								atLeave={{ offset: 0 }}
+								atActive={{ offset: 0 }}
+								mapStyles={(styles) => ({
+									transform: `translateX(${styles.offset}%)`,
+								})}
+							/>
 							<AnimatedRoute
 								exact path="/page-four"
 								component={ColorPage}
-								atEnter={{ offset: 300 }}
+								atEnter={{ offset: 500 }}
 								atLeave={{ offset: 0 }}
 								atActive={{ offset: 0 }}
 								mapStyles={(styles) => ({
@@ -55,7 +65,7 @@ class MyApp extends Component {
 							<AnimatedRoute
 								exact path="/page-three"
 								component={DescriptionPage}
-								atEnter={{ offset: 300 }}
+								atEnter={{ offset: -500 }}
 								atLeave={{ offset: 0 }}
 								atActive={{ offset: 0 }}
 								mapStyles={(styles) => ({
@@ -65,7 +75,7 @@ class MyApp extends Component {
 							<AnimatedRoute
 								exact path="/page-two"
 								component={EmailPage}
-								atEnter={{ offset: 300 }}
+								atEnter={{ offset: 500 }}
 								atLeave={{ offset: 0 }}
 								atActive={{ offset: 0 }}
 								mapStyles={(styles) => ({
@@ -75,7 +85,7 @@ class MyApp extends Component {
 							<AnimatedRoute
 								exact path="/"
 								component={NamesPage}
-								atEnter={{ offset: 300 }}
+								atEnter={{ offset: -500 }}
 								atLeave={{ offset: 0 }}
 								atActive={{ offset: 0 }}
 								mapStyles={(styles) => ({
@@ -83,7 +93,6 @@ class MyApp extends Component {
 								})}
 							/>
 						</div>
-      			<Route exact path='/page-five' component={PageFive} />
     		</main>
 			</div>
 		)

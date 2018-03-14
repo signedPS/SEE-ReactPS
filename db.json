@@ -2,22 +2,21 @@
   "posts": [
     {
       "names": {
-        "lastName": "Sorto",
-        "firstName": "Pedro Osbaldo"
+        "firstName": "Hello",
+        "lastName": "Moto"
       },
       "emailAddress": {
-        "email": "pedro.sorto@outlook.com"
+        "email": "wer3@nice.com"
       },
       "description": {
-        "age": "46 or older",
-        "feet": 2,
-        "weight": "165",
-        "inches": 5
+        "age": "36-45",
+        "feet": 3,
+        "weight": "12",
+        "inches": 3
       },
       "color": {
-        "other": true,
-        "colorValue": "Other",
-        "colorText": "yes"
+        "other": false,
+        "colorValue": "Blue"
       },
       "id": 1
     }

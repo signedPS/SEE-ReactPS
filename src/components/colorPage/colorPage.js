@@ -7,31 +7,14 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {RaisedButton} from 'material-ui';
 import { push } from 'react-router-redux';
-import {Store} from '../../store';
 
-import color, {
-	colorEntered,
-	colorTyped
-} from './colorRedux';
+import color from '../../redux/colorPage/color-page-reducer';
+import { colorEntered, colorTyped } from '../../redux/colorPage/color-page-actions';
 
 class ColorPage extends Component{
 	constructor(props){
 		super(props);
 		this.renderMenuItems= this.renderMenuItems.bind(this);
-		this.fetchFromStore = this.fetchFromStore.bind(this);
-		this.putData = this.putData.bind(this);
-	}
-
-	putData(dataObj){
-		fetch('http://localhost:3000/posts/1', {
-			method: 'PUT', // or 'PUT'
-			body: JSON.stringify(dataObj),
-			headers: new Headers({
-				'Content-Type': 'application/json'
-			})
-		}).then(res => res.json())
-		.catch(error => console.error('Error:', error))
-		.then(response => console.log('Success:', response));
 	}
 
 	renderMenuItems(list){
@@ -42,17 +25,6 @@ class ColorPage extends Component{
 					value={item}
 				/>)
 		);
-	}
-
-	fetchFromStore(){
-		let items = Store.getState();
-			let postObject = {};
-			Object.keys(items).map((eachItem) => {
-				if((config.criteria).indexOf(eachItem) !== -1){
-					postObject[eachItem] = items[eachItem];
-				}
-			});
-		return postObject;
 	}
 
 	render(){
@@ -77,18 +49,17 @@ class ColorPage extends Component{
 							onChange={(e) => this.props.colorTyped(e)}
 						/>
 					}
-					<div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
+					<div style={{display:'flex', flexDirection:'row'}}>
 							<RaisedButton label="Previous Page"
 								onClick={() => this.props.prevPage()}
-							style={{marginTop: '30px'}}>
+							style={{margin:12}}>
 							</RaisedButton>
-
-							<RaisedButton disabled={(this.props.errorText || this.props.colorRequired) ? true : false}
-								primary={true}
-								label={"Post Data"}
-								onClick={() => this.putData(this.fetchFromStore())}
-								style={{marginTop: '30px'}}
-							/>
+							{(!this.props.errorText || this.props.colorRequired) &&
+								<RaisedButton primary={true}
+									label="Next Page" onClick={() => this.props.changePage()}
+									style={{margin:12}}>
+								</RaisedButton>
+							}
 					</div>
 				</div>
 			</div>
@@ -106,6 +77,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
 	prevPage: () => push('/page-three'),
+	changePage: () => push('/page-five'),
 	colorEntered: (value) => dispatch(colorEntered(value)),
 	colorTyped: (e) => dispatch(colorTyped(e.target.value))
 }, dispatch);

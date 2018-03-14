@@ -5,10 +5,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {TextField} from 'material-ui';
 import {RaisedButton} from 'material-ui';
-import names,{
-	firstNameEnter,
-	lastNameEnter
-} from './namesRedux';
+import { firstNameEnter, lastNameEnter } from '../../redux/namesPage/names-page-actions';
+
+import names from '../../redux/namesPage/names-page-reducer';
 
 class NamesPage extends Component{
 	constructor(props){
@@ -37,7 +36,9 @@ class NamesPage extends Component{
 						onChange={(e) => this.props.lastNameEnter(e)}
 					/>
 				</div>
-				{ (!this.props.errorTextLN && !this.props.errorTextFN) && <RaisedButton  label="Next Page" onClick={() => this.props.changePage()} style={{margin:12}}></RaisedButton>}
+				{ (!this.props.errorTextLN && !this.props.errorTextFN) &&
+					<RaisedButton primary={true} label="Next Page" onClick={() => this.props.changePage()} style={{margin:12}}></RaisedButton>
+				}
 			</div>
 		);
 	}

@@ -7,13 +7,14 @@ import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
 import {RaisedButton} from 'material-ui';
 import { connect } from 'react-redux';
-import description, {
+import {
 	ageEntered,
 	feetEntered,
 	inchesEntered,
 	weightEntered,
 	weightValidation
-} from './descriptionRedux';
+} from '../../redux/descriptionPage/description-page-actions';
+import description from '../../redux/descriptionPage/description-page-reducer';
 
 
 class DescriptionPage extends Component{
@@ -56,7 +57,11 @@ class DescriptionPage extends Component{
 					&& !this.props.inchesErrorText
 					&& !this.props.feetErrorText)
 					&&
-						<RaisedButton  label="Next Page" onClick={() => this.props.changePage()} style={{margin:12}}></RaisedButton>
+						<RaisedButton primary={true}
+							label={'Next Page'}
+							onClick={() => this.props.changePage()}
+							style={{margin:12}}>
+						</RaisedButton>
 				}
 				</div>
 			</div>

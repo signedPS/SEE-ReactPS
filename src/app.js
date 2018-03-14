@@ -13,13 +13,13 @@ injectTapEventPlugin();
 ReactDOM.render(
 	<Provider store={Store}>
 		<PersistGate loading={null} persistor={persistor}>
-		<ConnectedRouter history={history}>
-			<div>
-				<MuiThemeProvider>
-					<MyApp/>
-				</MuiThemeProvider>
-			</div>
-		</ConnectedRouter>
+			<ConnectedRouter history={history}>
+				<div>
+					<MuiThemeProvider>
+						<MyApp/>
+					</MuiThemeProvider>
+				</div>
+			</ConnectedRouter>
 		</PersistGate>
 	</Provider>
 	,

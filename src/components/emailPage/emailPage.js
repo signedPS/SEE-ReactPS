@@ -4,7 +4,8 @@ import {TextField} from 'material-ui';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import emailAddress, {emailEntered} from './emailRedux';
+import emailAddress from '../../redux/emailPage/email-page-reducer';
+import { emailEntered } from '../../redux/emailPage/email-page-actions';
 import {RaisedButton} from 'material-ui';
 
 class EmailPage extends Component{
@@ -30,7 +31,7 @@ class EmailPage extends Component{
 					<RaisedButton  label="Previous Page" onClick={() => this.props.prevPage()} style={{margin:12}}></RaisedButton>
 				{ (!this.props.errorText) &&
 
-						<RaisedButton  label="Next Page" onClick={() => this.props.changePage()} style={{margin:12}}></RaisedButton>
+						<RaisedButton primary={true} label="Next Page" onClick={() => this.props.changePage()} style={{margin:12}}></RaisedButton>
 
 				}
 				</div>

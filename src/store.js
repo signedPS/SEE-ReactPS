@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 import {createHashHistory} from 'history';
 import { Route } from 'react-router'
 import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
-import reducers from './components/reducers';
+import reducers from './redux/reducers';
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web and AsyncStorage for react-native
 
