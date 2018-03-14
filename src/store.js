@@ -1,12 +1,26 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import { routerMiddleware } from 'react-router-redux';
+import React from 'react'
+import ReactDOM from 'react-dom'
 import thunk from 'redux-thunk';
-import { useRouterHistory } from 'react-router';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
+import { Provider } from 'react-redux'
 import {createHashHistory} from 'history';
-import rootReducer from './components/';
+import { Route } from 'react-router'
+import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
+import reducers from './redux/reducers';
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage' // defaults to localStorage for web and AsyncStorage for react-native
 
-export const history = createHashHistory();
+export const history = createHashHistory()
 
+//configuring persistant storage
+const persistConfig = {
+  key: 'root',
+  storage,
+}
+
+//passing in persist config and combined reducers/rootReducer
+const persistedReducer = persistReducer(persistConfig, reducers)
+//setting initialState to empty
 const initialState = {};
 const enhancers = [];
 const middleware = [
@@ -28,7 +42,9 @@ const composedEnhancers = compose(
 );
 
 export const Store = createStore(
-  rootReducer,
-  initialState,
-  composedEnhancers
-);
+  persistedReducer,
+	initialState,
+	composedEnhancers
+)
+
+export const persistor = persistStore(Store);

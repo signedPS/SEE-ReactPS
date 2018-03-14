@@ -1,11 +1,14 @@
 import React from 'react';
 import {Component} from 'react';
 import { Route, Link } from 'react-router-dom';
-import Names from '../names/names';
-import PageTwo from '../pageTwo/pageTwo';
-import PageThree from '../pageThree/pageThree';
-import PageFour from '../pageFour/pageFour';
-import PageFive from '../pageFive/pageFive';
+import NamesPage from '../namesPage/namesPage';
+import EmailPage from '../emailPage/emailPage';
+import DescriptionPage from '../descriptionPage/descriptionPage';
+import ColorPage from '../colorPage/colorPage';
+import FinishPage from '../finishPage/finishPage';
+import {RaisedButton} from 'material-ui';
+import { AnimatedRoute } from 'react-router-transition';
+import {pageContainer, fieldContainers, linkStyle} from '../componentStyles';
 
 class MyApp extends Component {
 	constructor(props) {
@@ -13,27 +16,83 @@ class MyApp extends Component {
 	}
 
 	render(){
+
 		return(
-			<div>
+				<div  style={pageContainer}>
 				<header>
-					<div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around'}}>
-	      		<Link to='/'>Home</Link>
-	      		<Link to='/page-two'>Page Two</Link>
-	      		<Link to='/page-three'>Page Three</Link>
-	      		<Link to='/page-four'>Page Four</Link>
-	      		<Link to='/page-five'>Page Five</Link>
-					</div>
+						<Link style={linkStyle} to='/'>
+							<RaisedButton>Name</RaisedButton>
+						</Link>
+		        <Link style={linkStyle} to='/page-two'>
+		            <RaisedButton>Email</RaisedButton>
+		        </Link>
+						<Link style={linkStyle} to='/page-three'>
+		          <RaisedButton>Description</RaisedButton>
+						</Link>
+						<Link style={linkStyle} to='/page-four'>
+		        	<RaisedButton>Color</RaisedButton>
+						</Link>
+						<Link style={linkStyle} to='/page-five'>
+		        	<RaisedButton>Finish Page</RaisedButton>
+						</Link>
     		</header>
 				<main>
-      			<Route exact path='/' component={Names} />
-      			<Route exact path='/page-two' component={PageTwo} />
-      			<Route exact path='/page-three' component={PageThree} />
-      			<Route exact path='/page-four' component={PageFour} />
-      			<Route exact path='/page-five' component={PageFive} />
+						<div style={fieldContainers}>
+							<AnimatedRoute
+								exact path="/page-five"
+								component={FinishPage}
+								atEnter={{ offset: 500 }}
+								atLeave={{ offset: 0 }}
+								atActive={{ offset: 0 }}
+								mapStyles={(styles) => ({
+									transform: `translateX(${styles.offset}%)`,
+								})}
+							/>
+							<AnimatedRoute
+								exact path="/page-four"
+								component={ColorPage}
+								atEnter={{ offset: 500 }}
+								atLeave={{ offset: 0 }}
+								atActive={{ offset: 0 }}
+								mapStyles={(styles) => ({
+									transform: `translateX(${styles.offset}%)`,
+								})}
+							/>
+							<AnimatedRoute
+								exact path="/page-three"
+								component={DescriptionPage}
+								atEnter={{ offset: -500 }}
+								atLeave={{ offset: 0 }}
+								atActive={{ offset: 0 }}
+								mapStyles={(styles) => ({
+									transform: `translateX(${styles.offset}%)`,
+								})}
+							/>
+							<AnimatedRoute
+								exact path="/page-two"
+								component={EmailPage}
+								atEnter={{ offset: 500 }}
+								atLeave={{ offset: 0 }}
+								atActive={{ offset: 0 }}
+								mapStyles={(styles) => ({
+									transform: `translateX(${styles.offset}%)`,
+								})}
+							/>
+							<AnimatedRoute
+								exact path="/"
+								component={NamesPage}
+								atEnter={{ offset: -500 }}
+								atLeave={{ offset: 0 }}
+								atActive={{ offset: 0 }}
+								mapStyles={(styles) => ({
+									transform: `translateX(${styles.offset}%)`,
+								})}
+							/>
+						</div>
     		</main>
 			</div>
 		)
 	}
 }
 
-export default MyApp;
+export default MyApp
