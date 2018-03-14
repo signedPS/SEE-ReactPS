@@ -1,4 +1,24 @@
 {
   "posts": [
+    {
+      "names": {
+        "firstName": "Pedro",
+        "lastName": "Last"
+      },
+      "emailAddress": {
+        "email": "nice@email.com"
+      },
+      "description": {
+        "age": "17 or younger",
+        "feet": 3,
+        "weight": "",
+        "inches": 1
+      },
+      "color": {
+        "other": false,
+        "colorValue": "Red"
+      },
+      "id": 1
+    }
   ]
 }
