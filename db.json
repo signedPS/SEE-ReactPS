@@ -1,0 +1,25 @@
+{
+  "posts": [
+    {
+      "names": {
+        "lastName": "Sorto",
+        "firstName": "Pedro Osbaldo"
+      },
+      "emailAddress": {
+        "email": "pedro.sorto@outlook.com"
+      },
+      "description": {
+        "age": "46 or older",
+        "feet": 2,
+        "weight": "165",
+        "inches": 5
+      },
+      "color": {
+        "other": true,
+        "colorValue": "Other",
+        "colorText": "yes"
+      },
+      "id": 1
+    }
+  ]
+}
