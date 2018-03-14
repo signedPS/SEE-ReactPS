@@ -21,7 +21,7 @@ const feetEntered = (feet) => {
 		return {
 			type: FEET_ENTERED,
 			feet: feet,
-			feetErrorText: undefined
+			feetErrorText: undefined,
 	  }
 	}
 	else{
@@ -58,7 +58,8 @@ const weightEntered = (weight) => {
 	 	 return {
 				type: WEIGHT_ENTERED,
 	 			weight: weight,
-	 		 	weightErrorText: 'Weight must be greater than zero'
+	 		 	weightErrorText: 'Weight must be greater than zero',
+				validationError: true
 	 	 }
 	  }
 	  else{
@@ -73,7 +74,8 @@ const weightEntered = (weight) => {
 		return {
 			type: WEIGHT_ENTERED,
 			weight: weight,
-			weightErrorText: 'Weight must be a number'
+			weightErrorText: 'Weight must be a number',
+			validationError: true
 		}
 	}
 }

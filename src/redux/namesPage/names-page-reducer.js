@@ -11,21 +11,43 @@ const initialState = {
 };
 
 export default function(state = initialState, action){
+
   switch (action.type) {
 		case FIRSTNAME_ENTERED:
-			return {
-				...state,
-        firstName: action.name,
-				errorTextFN: action.errorText,
-				validationError: action.validationError
-			};
+			if(action.validationError !== undefined){
+				return {
+					...state,
+	        firstName: action.name,
+					errorTextFN: action.errorText,
+					validationError: action.validationError
+				};
+			}
+			else{
+				console.log('this');
+				return{
+					...state,
+	        firstName: action.name,
+					errorTextFN: action.errorText,
+					validationError: (state.errorTextLN ? true : false)
+				}
+			}
 		case LASTNAME_ENTERED:
-			return {
-				...state,
-				lastName: action.name,
-        errorTextLN: action.errorText,
-				validationError: action.validationError
-			};
+			if(action.validationError !== undefined){
+					return {
+						...state,
+						lastName: action.name,
+		        errorTextLN: action.errorText,
+						validationError: action.validationError
+					};
+				}
+			else{
+				return{
+					...state,
+					lastName: action.name,
+					errorTextLN: action.errorText,
+					validationError: (state.errorTextFN ? true : false)
+				}
+			}
     default:
       return state;
   }

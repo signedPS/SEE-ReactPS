@@ -56,6 +56,10 @@ const linkStyle = {
 	marginRight:'10px'
 };
 
+const paperContainerStyle = {
+	width:'500px', padding: '20px', marginTop: '20px'
+};
+
 export {
   pageContainer,
 	paginationContainer,
@@ -66,5 +70,6 @@ export {
 	smallInputStyle,
 	finalPageErrorTextStyle,
 	postDataButtonStyle,
-	linkStyle
+	linkStyle,
+	paperContainerStyle
 };

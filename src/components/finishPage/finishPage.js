@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import {RaisedButton} from 'material-ui';
+import {Paper} from 'material-ui';
 import {Store} from '../../store';
 import config from '../../appConfig';
 import {pageContainer,
@@ -11,7 +12,8 @@ import {pageContainer,
 	titleSubtextStyle,
 	pageButtonStyling,
 	finalPageErrorTextStyle,
-	postDataButtonStyle} from '../componentStyles';
+	postDataButtonStyle,
+	paperContainerStyle} from '../componentStyles';
 
 class FinishPage extends Component{
 	constructor(props){
@@ -56,6 +58,7 @@ class FinishPage extends Component{
 		let invalid = false
 		Object.keys(checkObj).map((keys) => {
 			let subObj = checkObj[keys];
+			console.log(subObj);
 			Object.keys(subObj).map((subKeys)=>{
 				if(subKeys == 'validationError' && subObj[subKeys] === true){
 					invalid = true
@@ -68,25 +71,27 @@ class FinishPage extends Component{
 
 	render(){
 		return(
-			<div style={pageContainer}>
-				<h1>Almost done, just submit your data!</h1>
-				<p style={titleSubtextStyle}>Thank you for participating.</p>
-				<div style={fieldContainers}>
-					<RaisedButton  label="Previous Page" onClick={() => this.props.prevPage()} style={pageButtonStyling}></RaisedButton>
-					<RaisedButton disabled={(this.props.errorText || this.props.colorRequired) ? true : false}
-						disabled={this.invalidCheck(this.fetchFromStore())}
-						secondary={true}
-						label={"Post Data"}
-						onClick={() => this.putData(this.fetchFromStore())}
-						style={postDataButtonStyle}
-					/>
-					{
-						this.invalidCheck(this.fetchFromStore()) ?
-						<div style={finalPageErrorTextStyle}>Invalid form, missing data!</div> :
-	 					''
-					}
+			<Paper style={paperContainerStyle} zDepth={5}>
+				<div style={pageContainer}>
+					<h1>Almost done, just submit your data!</h1>
+					<p style={titleSubtextStyle}>Thank you for participating.</p>
+					<div style={fieldContainers}>
+						<RaisedButton  label="Previous Page" onClick={() => this.props.prevPage()} style={pageButtonStyling}></RaisedButton>
+						<RaisedButton disabled={(this.props.errorText || this.props.colorRequired) ? true : false}
+							disabled={this.invalidCheck(this.fetchFromStore())}
+							secondary={true}
+							label={"Post Data"}
+							onClick={() => this.putData(this.fetchFromStore())}
+							style={postDataButtonStyle}
+						/>
+						{
+							this.invalidCheck(this.fetchFromStore()) ?
+							<div style={finalPageErrorTextStyle}>Invalid form, missing data!</div> :
+		 					''
+						}
+					</div>
 				</div>
-			</div>
+			</Paper>
 		);
 	}
 }

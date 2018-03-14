@@ -6,6 +6,7 @@ import config from '../../appConfig';
 import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
 import {RaisedButton} from 'material-ui';
+import {Paper} from 'material-ui';
 import { connect } from 'react-redux';
 import {pageContainer,
 	paginationContainer,
@@ -13,7 +14,8 @@ import {pageContainer,
 	titleSubtextStyle,
 	flexRowFieldsStyle,
 	pageButtonStyling,
-	smallInputStyle} from '../componentStyles';
+	smallInputStyle,
+	paperContainerStyle} from '../componentStyles';
 import {
 	ageEntered,
 	feetEntered,
@@ -40,57 +42,57 @@ class DescriptionPage extends Component{
 	}
 
 	render(){
+		console.log(this.props.validationError);
 		return(
-			<div style={pageContainer}>
-				<h1>Description</h1>
-				<div style={fieldContainers}>
-					<p style={titleSubtextStyle}>Tell us about yourself.</p>
-					<SelectField errorText={this.props.ageErrorText}
-						value={this.props.age}
-						onChange={(event, index, value)=>this.props.ageEntered(value)}
-						floatingLabelText='Age'
-					>
-						{this.renderMenuItems(config.age)}
-					</SelectField>
-					<div style={flexRowFieldsStyle}>
-						<SelectField errorText={this.props.feetErrorText}
-							value={this.props.feet}
-							onChange={(event, index, value)=>this.props.feetEntered(value)}
-							style={smallInputStyle}
-							floatingLabelText='Feet'
+			<Paper style={paperContainerStyle} zDepth={ !this.props.validationError ? 3 : 0}>
+				<div style={pageContainer}>
+					<h1>Description</h1>
+					<div style={fieldContainers}>
+						<p style={titleSubtextStyle}>Tell us about yourself.</p>
+						<SelectField errorText={this.props.ageErrorText}
+							value={this.props.age}
+							onChange={(event, index, value)=>this.props.ageEntered(value)}
+							floatingLabelText='Age'
 						>
-							{this.renderMenuItems(config.feet)}
+							{this.renderMenuItems(config.age)}
 						</SelectField>
-						<SelectField errorText={this.props.inchesErrorText}
-							value={this.props.inches}
-							onChange={(event, index, value)=>this.props.inchesEntered(value)}
-							style={smallInputStyle}
-							floatingLabelText='Inches'
-						>
-							{this.renderMenuItems(config.inches)}
-						</SelectField>
+						<div style={flexRowFieldsStyle}>
+							<SelectField errorText={this.props.feetErrorText}
+								value={this.props.feet}
+								onChange={(event, index, value)=>this.props.feetEntered(value)}
+								style={smallInputStyle}
+								floatingLabelText='Feet'
+							>
+								{this.renderMenuItems(config.feet)}
+							</SelectField>
+							<SelectField errorText={this.props.inchesErrorText}
+								value={this.props.inches}
+								onChange={(event, index, value)=>this.props.inchesEntered(value)}
+								style={smallInputStyle}
+								floatingLabelText='Inches'
+							>
+								{this.renderMenuItems(config.inches)}
+							</SelectField>
+						</div>
+						<TextField value={this.props.weight}
+							errorText={ this.props.weightErrorText || ''}
+							onChange={(event)=>this.props.weightEntered(event)}
+							floatingLabelText='Weight (lbs)'
+						/>
 					</div>
-					<TextField value={this.props.weight}
-						errorText={ this.props.weightErrorText || ''}
-						onChange={(event)=>this.props.weightEntered(event)}
-						floatingLabelText='Weight (lbs)'
-					/>
+					<div style={paginationContainer}>
+						<RaisedButton  label="Previous Page" onClick={() => this.props.prevPage()} style={pageButtonStyling}></RaisedButton>
+					{ (!this.props.validationError)
+						&&
+						<RaisedButton primary={true}
+							label={'Next Page'}
+							onClick={() => this.props.changePage()}
+							style={pageButtonStyling}>
+						</RaisedButton>
+					}
+					</div>
 				</div>
-				<div style={paginationContainer}>
-					<RaisedButton  label="Previous Page" onClick={() => this.props.prevPage()} style={pageButtonStyling}></RaisedButton>
-				{ (!this.props.errorText
- 					&& !this.props.ageErrorText
-					&& !this.props.inchesErrorText
-					&& !this.props.feetErrorText)
-					&&
-					<RaisedButton primary={true}
-						label={'Next Page'}
-						onClick={() => this.props.changePage()}
-						style={pageButtonStyling}>
-					</RaisedButton>
-				}
-				</div>
-			</div>
+			</Paper>
 		);
 	}
 }
@@ -104,6 +106,7 @@ const mapStateToProps = (state) => ({
 		ageErrorText: state.description.ageErrorText,
 		inchesErrorText: state.description.inchesErrorText,
 		feetErrorText: state.description.feetErrorText,
+		validationError: state.description.validationError,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
