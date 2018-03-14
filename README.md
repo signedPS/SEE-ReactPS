@@ -40,3 +40,4 @@ You should see the message `Project is running at http://localhost:8080/` in you
 
 Testing can be initiated by running `$karma start`
 
+github url: https://github.com/signedPS/SEE-ReactPS.git
