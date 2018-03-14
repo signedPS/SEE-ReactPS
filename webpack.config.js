@@ -34,17 +34,5 @@ module.exports = {
         use: [ 'style-loader', 'css-loader' ]
       }
    ],
- },
- plugins: [
-   new CopyWebpackPlugin([
-     {
-         from: 'img/items/*.*',
-         to: resolve(__dirname,  'dist/src/'),
-     },
-   {
-       from: 'img/*.*',
-       to: resolve(__dirname, 'dist/src/'),
-   }
- ]),
-],
+ }
 }
