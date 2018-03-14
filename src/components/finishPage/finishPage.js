@@ -77,7 +77,7 @@ class FinishPage extends Component{
 					<p style={titleSubtextStyle}>Thank you for participating.</p>
 					<div style={fieldContainers}>
 						<RaisedButton  label="Previous Page" onClick={() => this.props.prevPage()} style={pageButtonStyling}></RaisedButton>
-						<RaisedButton disabled={(this.props.errorText || this.props.colorRequired) ? true : false}
+						<RaisedButton disabled={(this.props.errorText) ? true : false}
 							disabled={this.invalidCheck(this.fetchFromStore())}
 							secondary={true}
 							label={"Post Data"}
