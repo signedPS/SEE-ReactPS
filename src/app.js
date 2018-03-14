@@ -10,18 +10,19 @@ import { PersistGate } from 'redux-persist/integration/react'
 
 injectTapEventPlugin();
 
-ReactDOM.render(
-	<Provider store={Store}>
-		<PersistGate loading={null} persistor={persistor}>
-			<ConnectedRouter history={history}>
-				<div>
-					<MuiThemeProvider>
-						<MyApp/>
-					</MuiThemeProvider>
-				</div>
-			</ConnectedRouter>
-		</PersistGate>
-	</Provider>
-	,
-	document.getElementById('reactContainer')
-);
+let div = document.createElement('div');
+
+document.body.appendChild(div);
+
+ReactDOM.render(<Provider store={Store}>
+	<PersistGate loading={null} persistor={persistor}>
+		<ConnectedRouter history={history}>
+			<div>
+				<MuiThemeProvider>
+					<MyApp/>
+				</MuiThemeProvider>
+			</div>
+		</ConnectedRouter>
+	</PersistGate>
+</Provider>
+, div);

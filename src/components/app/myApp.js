@@ -17,9 +17,11 @@ class MyApp extends Component {
 
 	render(){
 
+		const includeToolbar = false;
+
 		return(
 				<div  style={pageContainer}>
-				<header>
+				{includeToolbar && <header>
 						<Link style={linkStyle} to='/'>
 							<RaisedButton>Name</RaisedButton>
 						</Link>
@@ -35,7 +37,7 @@ class MyApp extends Component {
 						<Link style={linkStyle} to='/page-five'>
 		        	<RaisedButton>Finish Page</RaisedButton>
 						</Link>
-    		</header>
+    		</header>}
 				<main>
 						<div style={fieldContainers}>
 							<AnimatedRoute
