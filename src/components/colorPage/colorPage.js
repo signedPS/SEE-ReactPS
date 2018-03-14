@@ -49,7 +49,7 @@ class ColorPage extends Component{
 							onChange={(e) => this.props.colorTyped(e)}
 						/>
 					}
-					<div style={{display:'flex', flexDirection:'row'}}>
+					<div style={{display:'flex', flexDirection:'row', marginTop: '20px'}}>
 							<RaisedButton label="Previous Page"
 								onClick={() => this.props.prevPage()}
 							style={{margin:12}}>

@@ -35,7 +35,7 @@ const feetEntered = (feet) => {
 }
 
 const inchesEntered = (inches) => {
-	if(Number.isInteger(inches)){
+	if(Number.isInteger(parseInt(inches))){
 		return {
 			type: INCHES_ENTERED,
 			inches: inches,

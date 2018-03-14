@@ -2,21 +2,22 @@
   "posts": [
     {
       "names": {
-        "firstName": "Hello",
-        "lastName": "Moto"
+        "firstName": "k",
+        "lastName": "ji"
       },
       "emailAddress": {
-        "email": "wer3@nice.com"
+        "email": "nice@email.com"
       },
       "description": {
-        "age": "36-45",
+        "age": "17 or younger",
         "feet": 3,
-        "weight": "12",
-        "inches": 3
+        "weight": "",
+        "inches": 4
       },
       "color": {
-        "other": false,
-        "colorValue": "Blue"
+        "other": true,
+        "colorValue": "Other",
+        "colorText": "bjn"
       },
       "id": 1
     }
