@@ -14,7 +14,7 @@ class EmailPage extends Component{
 
 	render(){
 		return(
-			<div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
+			<div className="page" style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
 				<h1>Email Address</h1>
 				<div style={{display:'flex', flexDirection:'column'}}>
 				<p style={{textAlign:'center'}}>Please enter a valid email address</p>

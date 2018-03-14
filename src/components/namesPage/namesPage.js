@@ -18,7 +18,7 @@ class NamesPage extends Component{
 	render(){
 
 		return(
-			<div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
+			<div className="page" style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
 				<h1>Full Name</h1>
 				<div style={{display:'flex', flexDirection:'column'}}>
 					<p style={{textAlign:'center'}}>Please enter your name</p>
@@ -55,6 +55,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 	firstNameEnter: (e) => dispatch(firstNameEnter(e.target.value)),
 	lastNameEnter: (e) => dispatch(lastNameEnter(e.target.value))
 }, dispatch);
+
+
 
 export default connect(
   mapStateToProps,
