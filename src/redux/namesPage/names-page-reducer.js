@@ -23,7 +23,6 @@ export default function(state = initialState, action){
 				};
 			}
 			else{
-				console.log('this');
 				return{
 					...state,
 	        firstName: action.name,

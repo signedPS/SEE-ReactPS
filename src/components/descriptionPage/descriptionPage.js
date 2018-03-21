@@ -42,7 +42,6 @@ class DescriptionPage extends Component{
 	}
 
 	render(){
-		console.log(this.props.validationError);
 		return(
 			<Paper style={paperContainerStyle} zDepth={ !this.props.validationError ? 3 : 0}>
 				<div style={pageContainer}>

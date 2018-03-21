@@ -19,7 +19,6 @@ const initialState = {
 export default function(state = initialState, action={}){
 	switch (action.type) {
     case AGE_ENTERED:
-			console.log(action.validationError);
 			if(action.validationError !== undefined){
 	      return {
 					...state,
@@ -40,7 +39,6 @@ export default function(state = initialState, action={}){
 	      };
 			}
     case FEET_ENTERED:
-			console.log(action.validationError);
 			if(action.validationError !== undefined){
 	      return {
 					...state,
@@ -61,7 +59,6 @@ export default function(state = initialState, action={}){
 				}
 			}
     case INCHES_ENTERED:
-			console.log(action.validationError);
 			if(action.validationError !== undefined){
 	      return {
 					...state,
@@ -82,7 +79,6 @@ export default function(state = initialState, action={}){
 				}
 			}
     case WEIGHT_ENTERED:
-			console.log(action.validationError);
 			if(action.validationError !== undefined){
 	      return {
 					...state,

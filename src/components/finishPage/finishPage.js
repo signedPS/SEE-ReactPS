@@ -25,7 +25,6 @@ class FinishPage extends Component{
 	}
 
 	putData(dataObj){
-		console.log(dataObj);
 		fetch('http://localhost:3000/posts', {
 			method: 'POST', // or 'PUT and specify post ID e.g. http://localhost:3000/posts/1'
 			body: JSON.stringify(dataObj),
@@ -58,7 +57,6 @@ class FinishPage extends Component{
 		let invalid = false
 		Object.keys(checkObj).map((keys) => {
 			let subObj = checkObj[keys];
-			console.log(subObj);
 			Object.keys(subObj).map((subKeys)=>{
 				if(subKeys == 'validationError' && subObj[subKeys] === true){
 					invalid = true

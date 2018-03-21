@@ -1,6 +1,4 @@
-var webpack = require('webpack');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const resolve = require('path').resolve;
+var webpackConfig = require('./webpack.config.js');
 
 module.exports = function (config) {
   config.set({
@@ -10,14 +8,6 @@ module.exports = function (config) {
       'mocha',
       'sinon-chai'
     ], //use the mocha test framework
-		plugins: [
-  		'karma-chrome-launcher',
-  		'karma-tap',
-  		'karma-sourcemap-loader',
-  		'karma-webpack', // *** This 'registers' the Karma webpack plugin.
-			'karma-mocha',
-      'karma-sinon-chai'
-		],
     files: [
       'tests.webpack.js' //just load this file
     ],
@@ -25,41 +15,7 @@ module.exports = function (config) {
       'tests.webpack.js': [ 'webpack' ] //preprocess with webpack and our sourcemap loader
     },
     reporters: [ 'dots' ], //report results in this format
-    webpack: {
-      context: resolve(__dirname + '/src'),
-      entry: {
-        app: './app.js',
-        html: './index.html',
-      },
-      output:{
-             filename: '[name].js',
-             path: __dirname + '/dist',
-         },
-      module: {
-        loaders:[
-          {
-            test: /\.js$/,
-            exclude: /node_modules/,
-            loader: 'babel-loader',
-            query: {
-              presets: ['react', 'es2015', 'stage-2']
-            }
-          },
-          {
-           test: /\.json$/,
-           loader: 'json-loader'
-         },
-          {
-            test: /\.html$/,
-     	      loader: 'file-loader?name=[name].[ext]',
-          },
-    			{
-            test: /\.css$/,
-            use: [ 'style-loader', 'css-loader' ]
-          }
-       ],
-     }
-    },
+    webpack: webpackConfig,
     webpackServer: {
       noInfo: true //please don't spam the console when running in karma!
     }
