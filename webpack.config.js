@@ -1,4 +1,3 @@
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const resolve = require('path').resolve;
 
 module.exports = {
@@ -10,6 +9,7 @@ module.exports = {
   output:{
          filename: '[name].js',
          path: __dirname + '/dist',
+         publicPath: '/'
      },
   module: {
     loaders:[
