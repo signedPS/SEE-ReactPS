@@ -6,23 +6,30 @@ This project uses webpack with node version 5.11.1.
 Use `nvm` to switch to node version 5.11.1.
 $ nvm use v5.11.1, you may need to install this version of node.
 
-# Install karma and js-server globally.
+# js-server.
 
-```
-$ npm install -g karma
-$ npm install -g karma-cli
-$ npm install -g json-server
-```
+ $`npm install -g json-server`
+ 
+# Install node packages
+
 now run `$npm install` to install all node packages necessary for this application.
 
 # Boot up the js-server.
 
-`$json-server --watch db.json`
+$`json-server --watch db.json`
+
+
+# Testing 
+
+Testing can be initiated by running $`npm test`
+
+# Building
+To build the application to the dist directory run:
+$`npm run build`
 
 # Boot up the local webpack-dev-server
-! if not install, install the dev server with `$npm install --save webpack-dev-server`
 
-Run `$webpack-dev-server` to load up the test environment
+Run `$npm start` to load up the test environment
 
 You should see the message `Project is running at http://localhost:8080/` in your termina, by default the webpack-dev-server runs on `http://localhost:8080/` so open up that location in your browser.
 
@@ -35,9 +42,5 @@ You should see the message `Project is running at http://localhost:8080/` in you
 3. On the final page, if all validation has passed, you will be able to post the data from the form to the js-server located at http://localhost:3000/posts/.
 
 4. Close the page, refresh, and switch routes to check for persitence. 
-
-# Testing 
-
-Testing can be initiated by running `$karma start`
 
 github url: https://github.com/signedPS/SEE-ReactPS.git
